@@ -1,0 +1,41 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Typescript Boilerplate",
+  "steps": [
+    {
+      "file": "package.json",
+      "description": "All dependencies and scripts are specified in the package.json file",
+      "line": 1
+    },
+    {
+      "file": "package.json",
+      "description": "We need typescript as a dev dependency",
+      "line": 21
+    },
+    {
+      "file": "package.json",
+      "description": "ts-node-dev is like nodemon but for typescript",
+      "line": 22
+    },
+    {
+      "file": "package.json",
+      "description": "eslint is called a linter, it helps us to have the same coding style in a collaborative project https://eslint.org/",
+      "line": 15
+    },
+    {
+      "file": "package.json",
+      "description": "prettier is a code formatter, it helps us format our code to match the eslint rules so we dont spend time thinking about the rules but only about the code https://prettier.io/ https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode",
+      "line": 15
+    },
+    {
+      "file": ".eslintrc.js",
+      "description": "Here we configure the eslint rules",
+      "line": 1
+    },
+    {
+      "file": "tsconfig.json",
+      "description": "Here we configure typescript, https://www.typescriptlang.org/tsconfig",
+      "line": 1
+    }
+  ]
+}

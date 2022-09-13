@@ -7,8 +7,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/wilders', wilderController);
-app.use('/skills', skillsController);
+app.use('/api/wilders', wilderController);
+// app.use('/skills', skillsController);
 
 app.listen(3000, async () => {
   await dataSource.initialize();

@@ -1,8 +1,45 @@
 const Wilder = require("../models/Wilder")
 const { dataSource } = require("../tools/utils")
 
+const repository = dataSource.getRepository(Wilder);
+
 module.exports = {
-    create: async (wilder) => {
-        return await dataSource.getRepository(Wilder).save(wilder);
+    /**
+     * Retrieve all wilders from db.
+     * @returns wilders array
+     */
+    getAll: async () => {
+        return await repository.find();
+    },
+
+    /**
+     * Create a new wilder
+     * @param wilderRequest wilder params
+     * @returns the created wilder
+     */
+    create: async (wilderRequest) => {
+        return await repository.save(wilderRequest);
+    },
+
+    /**
+     * Update an existing wilder.
+     * @param wilderRequest new wilder data
+     * @param wilderId existing wilder id
+     * @returns updated wilder
+     */
+    update: async (wilderRequest, wilderId) => {
+        await repository.update(wilderId, wilderRequest);
+        return await repository.findOneBy({
+            id: parseInt(wilderId)
+        });
+    },
+
+    /**
+     * Delete an existing wilder.
+     * @param wilderId wilder id to delete
+     * @returns 
+     */
+    delete: async (wilderId) => {
+        return await repository.delete(wilderId);
     }
 }

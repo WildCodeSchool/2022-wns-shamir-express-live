@@ -13,8 +13,16 @@ const dataSource = new typeorm.DataSource({
 
 const app = express();
 
-app.post('/first', (request, response) => {
-  console.log("Hello world");
+app.use(express.json());
+
+app.get('/wilders', (request, response) => {
+});
+
+app.get('/wilders/:id', (request, response) => {
+  response.send("First endpoint");
+});
+
+app.post('/wilders', (request, response) => {
   response.send("First endpoint");
 });
 

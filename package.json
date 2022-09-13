@@ -1,0 +1,19 @@
+{
+  "name": "ws-node-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "sqlite3": "^5.0.11",
+    "typeorm": "^0.3.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

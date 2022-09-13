@@ -1,0 +1,8 @@
+const Wilder = require("../models/Wilder")
+const { dataSource } = require("../tools/utils")
+
+module.exports = {
+    create: async (wilder) => {
+        return await dataSource.getRepository(Wilder).save(wilder);
+    }
+}

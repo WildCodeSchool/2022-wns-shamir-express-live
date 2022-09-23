@@ -1,0 +1,9 @@
+POST http://localhost:5001/api/grades HTTP/1.1
+
+Content-Type: application/json
+
+{
+    "skill_id": 2,
+    "wilder_id": 3,
+    "votes": 5
+}

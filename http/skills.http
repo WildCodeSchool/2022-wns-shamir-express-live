@@ -1,0 +1,9 @@
+GET http://localhost:5001/api/skills
+
+###
+POST http://localhost:5001/api/skills
+Content-Type: application/json
+
+{
+  "name": "JavaScript",
+}

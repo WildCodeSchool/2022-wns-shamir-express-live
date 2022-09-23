@@ -1,0 +1,13 @@
+// Skills
+
+Créer un skill
+Supprimer un skill
+Lister tous les skills
+
+// Add Skill
+// request.wilderId
+// request.skillId
+POST /api/wilders/:wilderId/skills/:skillId
+
+// Remove skill
+DELETE /api/wilders/:wilderId/skills/:skillId

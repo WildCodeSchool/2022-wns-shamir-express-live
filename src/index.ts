@@ -3,6 +3,7 @@ import cors from "cors";
 import { dataSource } from "./tools/utils";
 import wilderController from "./controllers/wilderController";
 import skillsController from "./controllers/skillsController";
+import gradeController from "./controllers/gradeController";
 
 const app = express();
 app.use(cors({ origin: "http://localhost:3000" }));
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use("/api/wilders", wilderController);
 app.use("/api/skills", skillsController);
+app.use("/api/grades", gradeController);
 
 app.listen(5001, async () => {
   await dataSource.initialize();

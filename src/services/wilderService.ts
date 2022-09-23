@@ -12,7 +12,11 @@ export default {
    * @returns wilders array
    */
   getAll: async (): Promise<Wilder[]> => {
-    return await wilderRepository.find();
+    return await wilderRepository.find({
+      relations: {
+        grades: true,
+      },
+    });
   },
 
   /**
@@ -47,28 +51,5 @@ export default {
    */
   delete: async (wilderId: number): Promise<any> => {
     return await wilderRepository.delete(wilderId);
-  },
-
-  addSkill: async (skillId: number, wilderId: number): Promise<Wilder> => {
-    const wilder: Wilder | null = await wilderRepository.findOneBy({
-      id: wilderId,
-    });
-
-    const skill: Skill | null = await skillRepository.findOneBy({
-      id: skillId,
-    });
-
-    if (wilder === null || skill === null) {
-      throw new Error("Wilder or skill not found");
-    }
-
-    if (
-      wilder.skills.find((wilderSkill) => wilderSkill.id === skill.id) !== null
-    ) {
-      return wilder;
-    }
-
-    wilder.skills.push(skill);
-    return await wilderRepository.save(wilder);
   },
 };

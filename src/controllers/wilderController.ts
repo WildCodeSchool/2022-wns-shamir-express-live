@@ -41,18 +41,4 @@ router.delete("/:id", async (request: Request, response: Response) => {
   response.sendStatus(204);
 });
 
-router.post(
-  "/:id/skills/:skillId",
-  async (request: Request, response: Response) => {
-    try {
-      const wilderId: number = parseInt(request.params.id);
-      const skillId: number = parseInt(request.params.skillId);
-      const wilder: Wilder = await service.addSkill(skillId, wilderId);
-      response.send(wilder);
-    } catch (e: any) {
-      response.send(e.message);
-    }
-  }
-);
-
 export default router;

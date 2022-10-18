@@ -1,20 +1,37 @@
-import express from "express";
-import cors from "cors";
+import { ApolloServer } from "apollo-server";
+import wilderService from "./services/wilderService";
+import * as skillService from "./services/skillsService";
 import { dataSource } from "./tools/utils";
-import wilderController from "./controllers/wilderController";
-import skillsController from "./controllers/skillsController";
-import gradeController from "./controllers/gradeController";
+import typeDefs from "./typeDefs";
 
-const app = express();
-app.use(cors({ origin: "http://localhost:3000" }));
+const resolvers = {
+  Query: {
+    getAllWilders: async () => {
+      return await wilderService.getAll();
+    },
+  },
+  Mutation: {
+    createSkill: async (_: any, args: any) => {
+      return await skillService.create(args.name);
+    },
+  },
+};
 
-app.use(express.json());
+const port = 5002;
 
-app.use("/api/wilders", wilderController);
-app.use("/api/skills", skillsController);
-app.use("/api/grades", gradeController);
-
-app.listen(5001, async () => {
+const start = async (): Promise<void> => {
   await dataSource.initialize();
-  console.log("Server launch on http://localhost:5001");
-});
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+
+  try {
+    const { url }: { url: string } = await server.listen({ port });
+    console.log(`Server ready at ${url}`);
+  } catch (e) {
+    console.error("Error starting the server");
+  }
+};
+
+void start();

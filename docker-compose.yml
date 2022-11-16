@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  back:
+    build:
+      dockerfile: "Dockerfile"
+    volumes:
+      - ./:/app:rw,cached
+      - ./wildersdb.sqlite:/app/wildersdb.sqlite
+      - /app/node_modules
+    ports:
+      - 5002:5002

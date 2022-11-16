@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  back:
+    build:
+      dockerfile: "Dockerfile.prod"
+    volumes:
+      - ./wildersdb.sqlite:/app/wildersdb.sqlite
+    ports:
+      - 80:5002

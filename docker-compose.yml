@@ -6,7 +6,35 @@ services:
       dockerfile: "Dockerfile"
     volumes:
       - ./:/app:rw,cached
-      - ./wildersdb.sqlite:/app/wildersdb.sqlite
-      - /app/node_modules
     ports:
       - 5002:5002
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: wilderDB
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: wilder
+      PGDATA: /var/lib/postgresql/data/customDataFolder
+    volumes:
+      - ./dbData:/var/lib/postgresql/data/customDataFolder
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d wilder -U wilderDB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      db:
+        condition: service_healthy

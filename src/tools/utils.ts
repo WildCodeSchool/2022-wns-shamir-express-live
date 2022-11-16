@@ -5,8 +5,12 @@ import { User } from "../models/User";
 import Wilder from "../models/Wilder";
 
 export const dataSource = new DataSource({
-  type: "sqlite",
-  database: "./wildersdb.sqlite",
+  type: "postgres",
+  host: "db",
+  port: 5432,
+  username: "wilderDB",
+  password: "example",
+  database: "wilder",
   synchronize: true,
   entities: [Wilder, Skill, Grade, User],
 });

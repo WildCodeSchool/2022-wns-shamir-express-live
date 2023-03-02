@@ -8,6 +8,28 @@ describe("User resolver", () => {
     server = await createServer();
   });
 
+  it("should create a user", async () => {
+    const createUserMutation = gql`
+      mutation CreateUser($password: String!, $email: String!) {
+        createUser(password: $password, email: $email) {
+          email
+        }
+      }
+    `;
+
+    const response = await server.executeOperation({
+      query: createUserMutation,
+      variables: {
+        password: "1234",
+        email: "mael@vincent.fr",
+      },
+    });
+
+    expect(response.errors).toBeUndefined();
+    expect(response.data?.createUser).toBeDefined();
+    expect(response.data?.createUser.email).toBe("mael@vincent.fr");
+  });
+
   it("should retrieve a token", async () => {
     const getTokenMutation = gql`
       mutation GetToken($password: String!, $email: String!) {
